@@ -1,0 +1,73 @@
+<!--Here all the base pages of the webapp will go. -->
+<!DOCTYPE html>
+<html lang="en">
+<style>
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color: #111;}
+
+ul.topnav li a.active {background-color: #4CAF50;}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px) {
+  ul.topnav li.right, 
+  ul.topnav li {float: none;}
+}
+
+
+
+</style>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>GigaCow</title>
+</head>
+
+<body bgcolor="linen">
+
+
+<ul class="topnav">
+  <li><a class="active" href="#home"><b>Home</b></a></li>
+  <li><a href="#news"><b>Farm Management System</b></a></li>
+  <li><a href="#contact"><b>Milking</b></a></li>
+  <li class="right"><a href="#about"><b>GigaCow Info</b></a></li>
+  <li><a href="#news"><b>Milking essentials</b></a></li>
+  <li><a href="#contact"><b>Cow Comfort</b></a></li>
+  
+</ul>
+
+<div style="padding:0 16px;">
+  <h2>GigaCow project</h2>
+  <p></p>
+  <p></p>
+  <h4></h4>
+</div>
+
+
+<!--To make WebApp page dynamic. the page inofrmation will be stored here-->
+{% block content %}
+  
+  
+{% endblock  %}
+
+</body>
+
+</html>
