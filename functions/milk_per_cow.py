@@ -26,13 +26,3 @@ def daily_milk_per_cow(date, animal_id, action, milk_yield):
             return_data = return_data.append({'Date': date, 'Animal_ID': cow, 'Milk_yield': daily_milk, 'Nr_of_milkings': daily_nr_milkings}, ignore_index = True)
     
     return return_data
-
-
-# Input: pandas DataFrame for date, animal_id, action and milk_yield
-# Output: Average daily milk per cow based on the number of dates present in the data
-def avg_daily_milk_per_cow(date, animal_id, action, milk_yield):
-
-    # Get daily milk per cow
-    data = daily_milk_per_cow(date, animal_id, action, milk_yield)
-
-    return data['Milk_yield'].sum()/len(data)
