@@ -15,7 +15,7 @@ def daily_milk_per_cow(date, animal_id, action, milk_yield):
     dates = pd.unique(data['Date'])
 
     # Calculate the total milk produced by each cow for each day
-    return_data = pd.DataFrame(columns = ['Date', 'Animal_ID', 'Milk_yield', 'Nr_of_milkings'])
+    return_data = pd.DataFrame(columns = ['Date', 'Animal_ID', 'Total_milk_yield', 'Nr_of_milkings'])
     for date in dates:
         daily_data = data[data['Date'] == date]
         daily_milked_cows = pd.unique(daily_data['Animal_ID'])
@@ -23,6 +23,6 @@ def daily_milk_per_cow(date, animal_id, action, milk_yield):
             daily_milkings = daily_data[daily_data['Animal_ID'] == cow]
             daily_milk = daily_milkings['Milk_yield'].sum()
             daily_nr_milkings = len(daily_milkings)
-            return_data = return_data.append({'Date': date, 'Animal_ID': cow, 'Milk_yield': daily_milk, 'Nr_of_milkings': daily_nr_milkings}, ignore_index = True)
+            return_data = return_data.append({'Date': date, 'Animal_ID': cow, 'Total_milk_yield': daily_milk, 'Nr_of_milkings': daily_nr_milkings}, ignore_index = True)
     
     return return_data
