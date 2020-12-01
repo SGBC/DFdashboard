@@ -15,6 +15,8 @@ def preprocess_milkings(data):
 
     # Map successful milkings to ones, otherwise zero
     data['Action'] = (data['Action'] == "Mjölkning").replace({True: 1, False: 0})
+    
+    # Map milkings going to tank to ones, otherwise zero
     data['Milk_destination'] = (data['Milk_destination'] == "Mjölktank").replace({True: 1, False: 0})
 
     return data
