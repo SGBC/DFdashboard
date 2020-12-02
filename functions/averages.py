@@ -5,11 +5,12 @@ import re
 # Input: pandas DataFrame for total_milk_yield (per cow)
 # Output: Average daily milk yield per cow
 def avg_daily_milk_per_cow(total_milk_yield):
-    return total_milk_yield.sum()/len(total_milk_yield)
+    return round(total_milk_yield.sum()/len(total_milk_yield), 2)
 
 
 # Input: pandas DataFrame for date, animal_id, action and milk_yield
 # Output: List containing robot name followed by the average received daily milk yield, for each robot
+#         as well as the latest date used for calculations and the sum of all yields
 def avg_milk_from_robots(date, robot, action, milk_yield):
 
     # Concatenate data
@@ -24,11 +25,17 @@ def avg_milk_from_robots(date, robot, action, milk_yield):
 
     # Calculate the daily average milk yield received by each robot
     avg_milk_by_robot = []
+    avg_total = 0
     for robot in robot_names:
         robot_data = data[data['Robot'] == robot]
         avg_milk = robot_data['Milk_yield'].sum()/len(dates)
+        avg_total += avg_milk
         avg_milk_by_robot.append(robot)
-        avg_milk_by_robot.append(avg_milk)
+        avg_milk_by_robot.append(round(avg_milk, 2))
+    
+    # Add the latest date used for calculations and add the average milk from all robots
+    avg_milk_by_robot.append(data['Date'].iloc[-1])
+    avg_milk_by_robot.append(round(avg_total, 2))
     
     return avg_milk_by_robot
 
@@ -36,7 +43,7 @@ def avg_milk_from_robots(date, robot, action, milk_yield):
 # Input: pandas DataFrame for nr_of_milkings (per cow)
 # Output: Average daily number of milkings per cow
 def avg_nr_of_milkings_per_cow(nr_of_milkings):
-    return nr_of_milkings.sum()/len(nr_of_milkings)
+    return round(nr_of_milkings.sum()/len(nr_of_milkings), 2)
 
 
 # Input: pandas DataFrame for animal_id, date and the result from communicating with the smartgate
@@ -57,7 +64,7 @@ def avg_nr_pass_smartgate(animal_id, date, result):
     for date in dates:
         active_cows += len(pd.unique(data[data['Date'] == date]['Animal_ID']))
     
-    return len(data)/active_cows
+    return round(len(data)/active_cows, 2)
 
 
 # Input: pandas DataFrame for milking_time
