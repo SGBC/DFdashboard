@@ -26,6 +26,6 @@ print('Average 7 days, milking Volym. ', func.num_day_lactation_201_up(data2['Da
 stat = func.cow_stat(data['Animal_ID'], data['Date'], data['Milk_duration'], data['Action'], data['Milk_yield'], data['Nr_of_kickOffs'], data3['Animal Number'], data3['Official Reg. No. (ORN)'], data2['Official Reg. No. (ORN)'], data2['Days In Milk'])
 
 print(stat)
-print(stat[stat['Nr_of_kickOffs']>10])
+print(stat[stat['Nr_of_kickOffs']>2])
 
 #data.to_csv("testdata.csv",index=False)
