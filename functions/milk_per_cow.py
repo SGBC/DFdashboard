@@ -33,7 +33,7 @@ def daily_milk_per_cow(date, animal_id, action, milk_yield):
 #        pandas DataFrame for animal_id and official ID
 #        pandas DataFrame for official ID and number of days in milk
 # Output: pandas DataFrame containing date, animal_id, daily_milk_yield, nr_of_milkings, nr_of_kickoffs and days_in_milk
-def cow_stat(date, animal_id, Milk_duration, action, milk_yield, Nr_of_kickOffs, animal_id2, off_id, off_id2, lact):
+def cow_stat_kickoffs(date, animal_id, Milk_duration, action, milk_yield, Nr_of_kickOffs, animal_id2, off_id, off_id2, lact):
     
     data = daily_milk_per_cow(date, animal_id, action, milk_yield)
 
