@@ -18,6 +18,9 @@ def preprocess_milkings(data):
     
     # Map milkings going to tank to ones, otherwise zero
     data['Milk_destination'] = (data['Milk_destination'] == "Mjölktank").replace({True: 1, False: 0})
+    
+    # Map kickOffs to ones, otherwise zero
+    data['Nr_of_kickOffs'] = (data['Nr_of_kickOffs'].isnull()).replace({True: 0, False: 1})
 
     return data
 
