@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 
 
 # Input: pandas DataFrame for total_milk_yield (per cow)
@@ -57,3 +58,13 @@ def avg_nr_pass_smartgate(animal_id, date, result):
         active_cows += len(pd.unique(data[data['Date'] == date]['Animal_ID']))
     
     return len(data)/active_cows
+
+
+# Input: pandas DataFrame for milking_time
+# Output: Average milking time per milking event logged
+def avg_time_in_robot(timeInRobot):
+    times=[]
+    for i in timeInRobot:
+        temp = re.findall(r'\d+', i)
+        times.append(float(temp[0])+float(temp[1])/60)
+    return pd.DataFrame(times).mean()[0]
