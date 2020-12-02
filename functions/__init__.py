@@ -1,4 +1,3 @@
-import pandas as pd
 from functions.averages import *
 from functions.kickOffs import *
 from functions.milk_per_cow import *
