@@ -74,7 +74,7 @@ def avg_time_in_robot(timeInRobot):
     for i in timeInRobot:
         temp = re.findall(r'\d+', i)
         times.append(float(temp[0])+float(temp[1])/60)
-    return pd.DataFrame(times).mean()[0]
+    return round(pd.DataFrame(times).mean()[0],2)
 
 
 # Input: pandas DataFrame for start_time, animal_id, action and milk_weight, 
@@ -100,7 +100,7 @@ def avg_milking_volume_lact_0_100(start_time, animal_id, action, milk, animal_id
     # Calculate average
     avg = data['Milk_yield'].sum()/(len(dates)*len(cow_id))
 
-    return avg
+    return round(avg, 2)
 
 
 # Input: pandas DataFrame for start_time, animal_id, action and milk_weight, 
@@ -127,7 +127,7 @@ def avg_milking_volume_lact_101_200(start_time, animal_id, action, milk, animal_
     # Calculate average
     avg = data['Milk_yield'].sum()/(len(dates)*len(cow_id))
 
-    return avg
+    return round(avg, 2)
 
 
 # Input: pandas DataFrame for start_time, animal_id, action and milk_weight, 
@@ -153,4 +153,4 @@ def avg_milking_volume_lact_201_up(start_time, animal_id, action, milk, animal_i
     # Calculate average
     avg = data['Milk_yield'].sum()/(len(dates)*len(cow_id))
 
-    return avg
+    return round(avg, 2)
