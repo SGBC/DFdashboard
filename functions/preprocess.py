@@ -2,7 +2,7 @@ import pandas as pd
 
 
 # Input: pandas DataFrame containing all raw milking data
-# Output:
+# Output: pandas DataFrame containing formatted milking data
 def preprocess_milkings(data):
 
     # Rename columns to English
@@ -18,5 +18,22 @@ def preprocess_milkings(data):
     
     # Map milkings going to tank to ones, otherwise zero
     data['Milk_destination'] = (data['Milk_destination'] == "Mjölktank").replace({True: 1, False: 0})
+
+    return data
+
+
+# Input: pandas DataFrame containing all raw traffic data
+# Output: pandas DataFrame containing formatted traffic data
+def preprocess_traffic(data):
+
+    # Rename columns
+    data = data.rename(columns = {'Animal Number':'Animal_ID', 'Group Name':'Group', 'Date/Time':'Date'})
+
+    # Drop rows containing null values as dates and convert date format
+    data = data[data['Date'].notna()]
+    data['Date'] = pd.to_datetime(data['Date']).dt.strftime('%Y-%m-%d')
+
+    # Map pass through to ones, otherwise zero
+    data['Result'] = (data['Result'].str[0:4] == "Pass").replace({True: 1, False: 0})
 
     return data
