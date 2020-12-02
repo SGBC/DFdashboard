@@ -15,3 +15,16 @@ def nr_of_milking_cows_yesterday(date, total_milk_yield):
     data_yesterday = data[data['Date'] == data['Date'].iloc[-1]]
     
     return len(data_yesterday)
+
+# Input: pandas DataFrame for date, milk_yield and Milk_destination
+# Output: milk to tank yesterday
+def milk_to_tank_yesterday(date, Milk_yield, Milk_destination):
+    
+    # Concatenate data
+    data = pd.concat([date, Milk_yield, Milk_destination], axis = 1)
+
+    # Removes data from other days and not going to tank
+    data = data[data["Date"] == data["Date"].iloc[-1]]
+    data = data[data["Milk_destination"] == 1]
+
+    return round(data['Milk_yield'].sum(),2)
