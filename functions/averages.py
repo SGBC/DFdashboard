@@ -36,3 +36,24 @@ def avg_milk_from_robots(date, robot, action, milk_yield):
 # Output: Average daily number of milkings per cow
 def avg_nr_of_milkings_per_cow(nr_of_milkings):
     return nr_of_milkings.sum()/len(nr_of_milkings)
+
+
+# Input: pandas DataFrame for animal_id, date and the result from communicating with the smartgate
+# Output: Average number of smartgate passes based on the number of dates present in the data
+def avg_nr_pass_smartgate(animal_id, date, result):
+
+    # Concatenate data
+    data = pd.concat([animal_id, date, result], axis = 1)
+
+    # Get rows which resulted in pass
+    data = data[data['Result'] == 1]
+
+    # Get the unique dates
+    dates = pd.unique(data['Date'])
+
+    # For each date, compute how many cows have passed the smartgate
+    active_cows = 0
+    for date in dates:
+        active_cows += len(pd.unique(data[data['Date'] == date]['Animal_ID']))
+    
+    return len(data)/active_cows
