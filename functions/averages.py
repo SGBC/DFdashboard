@@ -69,6 +69,7 @@ def avg_time_in_robot(timeInRobot):
         times.append(float(temp[0])+float(temp[1])/60)
     return pd.DataFrame(times).mean()[0]
 
+
 # Input: pandas DataFrame for start_time, animal_id, action and milk_weight, 
 #        pandas DataFrame for animal_id and official ID
 #        pandas DataFrame for official ID and number of days in milk
@@ -94,7 +95,8 @@ def avg_milking_volume_lact_0_100(start_time, animal_id, action, milk, animal_id
 
     return avg
 
-    # Input: pandas DataFrame for start_time, animal_id, action and milk_weight, 
+
+# Input: pandas DataFrame for start_time, animal_id, action and milk_weight, 
 #        pandas DataFrame for animal_id and official ID
 #        pandas DataFrame for official ID and number of days in milk
 # Output: Average milking volume per cow who has been in milk between 101 and 200 days based on the number of dates present in the data
@@ -120,7 +122,8 @@ def avg_milking_volume_lact_101_200(start_time, animal_id, action, milk, animal_
 
     return avg
 
-    # Input: pandas DataFrame for start_time, animal_id, action and milk_weight, 
+
+# Input: pandas DataFrame for start_time, animal_id, action and milk_weight, 
 #        pandas DataFrame for animal_id and official ID
 #        pandas DataFrame for official ID and number of days in milk
 # Output: Average milking volume per cow who has been in milk more than 200 days based on the number of dates present in the data
