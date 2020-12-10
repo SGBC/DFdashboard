@@ -1,6 +1,5 @@
 import pandas as pd
 import glob
-
 import functions as func
 
 d=7
@@ -38,32 +37,20 @@ for of in range(9):
     
     # Lump together daily milkings by the same cow into one total daily milk yield per cow
     data_cow = func.daily_milk_per_cow(data['Date'], data['Animal_ID'], data['Action'], data['Milk_yield'])
-
-    v = data['Date'].iloc[-1]
-
-    #"avg_daily_milk_per_cow"
-    w1 = func.avg_daily_milk_per_cow(data_cow['Total_milk_yield'])
-
-    #"avg_daily_nr_of_milkings_per_cow"
-    w2 = func.avg_nr_of_milkings_per_cow(data_cow['Nr_of_milkings'])
-
-    #"nr_of_milkings_cows_yesterday"
-    w3 = func.nr_of_milking_cows_yesterday(data_cow['Date'], data_cow['Total_milk_yield'])
+    
+    # Compute key values
+    v = data['Date'].iloc[-1] #Most recent date
+    w1 = func.avg_daily_milk_per_cow(data_cow['Total_milk_yield']) #"avg_daily_milk_per_cow"
+    w2 = func.avg_nr_of_milkings_per_cow(data_cow['Nr_of_milkings']) #"avg_daily_nr_of_milkings_per_cow"
+    w3 = func.nr_of_milking_cows_yesterday(data_cow['Date'], data_cow['Total_milk_yield']) #"nr_of_milkings_cows_yesterday"
 
     milk_from_robot = func.avg_milk_from_robots(data['Date'], data['Robot'], data['Action'], data['Milk_yield'])
-    #"avg_milk_from_vms_1"
-    w4 = milk_from_robot[1]
-    #"avg_milk_from_vms_2"
-    w5 = milk_from_robot[3]
-    #"avg_milk_from_vms_1_and_2"
-    w6 = milk_from_robot[-1]
-
-
-    #"avg_nr_pass_smartgate"
-    w7 = func.avg_nr_pass_smartgate(dataA2['Animal_ID'], dataA2['Date'], dataA2['Result'])
-
-    #projected_monthly_milk
-    w8 = func.proj_monthly_milk(milk_from_robot)
+    w4 = milk_from_robot[1] #"avg_milk_from_vms_1"
+    w5 = milk_from_robot[3] #"avg_milk_from_vms_2"
+    w6 = milk_from_robot[-1] #"avg_milk_from_vms_1_and_2"
+    
+    w7 = func.avg_nr_pass_smartgate(dataA2['Animal_ID'], dataA2['Date'], dataA2['Result']) #"avg_nr_pass_smartgate"
+    w8 = func.proj_monthly_milk(milk_from_robot) #projected_monthly_milk
 
     v1 = func.avg_kickOffs(data['Date'], data['Animal_ID'], data['Nr_of_kickOffs'])
     v2 = func.avg_time_in_robot(data['Milk_duration'])
@@ -75,7 +62,8 @@ for of in range(9):
     v7 = func.avg_milking_volume_lact_0_100(data['Date'], data['Animal_ID'], data['Action'], data['Milk_yield'], data3['Animal Number'], data3['Official Reg. No. (ORN)'], data2['Official Reg. No. (ORN)'], data2['Days In Milk'])
     v8 = func.avg_milking_volume_lact_101_200(data['Date'], data['Animal_ID'], data['Action'], data['Milk_yield'], data3['Animal Number'], data3['Official Reg. No. (ORN)'], data2['Official Reg. No. (ORN)'], data2['Days In Milk'])
     v9 = func.avg_milking_volume_lact_201_up(data['Date'], data['Animal_ID'], data['Action'], data['Milk_yield'], data3['Animal Number'], data3['Official Reg. No. (ORN)'], data2['Official Reg. No. (ORN)'], data2['Days In Milk'])
-
+    
+    # Append all key values to a DataFrame
     out_data = out_data.append({'Date': v, 'avg_daily_milk_per_cow': w1, 'avg_daily_nr_of_milkings_per_cow': w2, 
         'nr_of_milkings_cows_yesterday': w3, 'avg_milk_from_vms_1': w4, 'avg_milk_from_vms_2': w5,
         'avg_milk_from_vms_1_and_2': w6, 'avg_nr_pass_smartgate': w7, 'projected_monthly_milk': w8,
@@ -84,5 +72,6 @@ for of in range(9):
         'avg_milking_volume_lact_101-200': v8, 'avg_milking_volume_lact_201-': v9},
         ignore_index = True)
 
+# Write key values to a csv file
 out_data.to_csv("keyvalues.csv", index=False)
 out_data.to_csv("keyvaluesOverView.csv", index=False, sep = ';')
