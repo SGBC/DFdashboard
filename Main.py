@@ -44,7 +44,7 @@ for of in range(9):
     #print(data)
     #print(dataA2)
 
-    #data_cow = func.daily_milk_per_cow(data['Date'], data['Animal_ID'], data['Action'], data['Milk_yield'])
+    data_cow = func.daily_milk_per_cow(data['Date'], data['Animal_ID'], data['Action'], data['Milk_yield'])
 
     #data_cow.to_csv("data_cow.csv", index=False, sep = ';')
 
