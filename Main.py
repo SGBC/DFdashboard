@@ -56,7 +56,7 @@ for of in range(9):
     v3 = func.milk_to_tank_yesterday(data['Date'], data['Milk_yield'], data['Milk_destination'])
     v4 = func.num_day_lactation_0_100(data2['Days In Milk'])
     v5 = func.num_day_lactation_101_200(data2['Days In Milk'])
-    v6 = func.num_day_lactation_201_up(data2['Days In Milk'])
+    v6 = func.num_day_lactation_201_up(data['Animal_ID'], data['Milk_yield'], data3['Animal Number'], data3['Official Reg. No. (ORN)'], data2['Official Reg. No. (ORN)'], data2['Days In Milk'])
     v7 = func.avg_milking_volume_lact_0_100(data['Date'], data['Animal_ID'], data['Action'], data['Milk_yield'], data3['Animal Number'], data3['Official Reg. No. (ORN)'], data2['Official Reg. No. (ORN)'], data2['Days In Milk'])
     v8 = func.avg_milking_volume_lact_101_200(data['Date'], data['Animal_ID'], data['Action'], data['Milk_yield'], data3['Animal Number'], data3['Official Reg. No. (ORN)'], data2['Official Reg. No. (ORN)'], data2['Days In Milk'])
     v9 = func.avg_milking_volume_lact_201_up(data['Date'], data['Animal_ID'], data['Action'], data['Milk_yield'], data3['Animal Number'], data3['Official Reg. No. (ORN)'], data2['Official Reg. No. (ORN)'], data2['Days In Milk'])
