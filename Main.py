@@ -74,3 +74,6 @@ for of in range(9):
 # Write key values to a csv file
 out_data.to_csv("keyvalues.csv", index=False)
 out_data.to_csv("keyvaluesOverView.csv", index=False, sep = ';')
+
+stat = func.cow_stat_kickoffs(data['Date'], data['Animal_ID'], data['Milk_duration'], data['Action'], data['Milk_yield'], data['Nr_of_kickOffs'], data3['Animal Number'], data3['Official Reg. No. (ORN)'], data2['Official Reg. No. (ORN)'], data2['Days In Milk'])
+(stat[stat['Nr_of_kickOffs']>2]).to_csv("kickOffs.csv", index=False)
