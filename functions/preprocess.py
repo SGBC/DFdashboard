@@ -37,7 +37,9 @@ def preprocess_traffic(data):
     data['Date'] = pd.to_datetime(data['Date']).dt.strftime('%Y-%m-%d')
 
     # Map pass through to ones, otherwise zero
-    data['Result'] = (data['Result'].str[0:4] == "Pass").replace({True: 1, False: 0})
+    data['Result'].loc[data['Result'].str[0:4] == "Pass"] = 1
+    data['Result'].loc[data['Result'].str[0:9] == "Separated"] = 1
+    data['Result'] = (data['Result'] == 1).replace({True: 1, False: 0})
 
     return data
 
