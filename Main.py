@@ -30,10 +30,10 @@ for offset in range(9):
     # Read feed and identity data
     if (offset)<2:
         data_feed = pd.read_csv(glob.glob("extractions/extraction_DelPro-5.3_2020110{}_03-10/GIGACOW_feed*.csv".format(days+1+offset))[0], encoding='latin-1')
-        data3 = pd.read_csv(glob.glob("extractions/extraction_DelPro-5.3_2020110{}_03-10/GIGACOW_identity*.csv".format(days+1+offset))[0])
+        data_identity = pd.read_csv(glob.glob("extractions/extraction_DelPro-5.3_2020110{}_03-10/GIGACOW_identity*.csv".format(days+1+offset))[0])
     else:
         data_feed = pd.read_csv(glob.glob("extractions/extraction_DelPro-5.3_202011{}_03-10/GIGACOW_feed*.csv".format(days+1+offset))[0], encoding='latin-1')
-        data3 = pd.read_csv(glob.glob("extractions/extraction_DelPro-5.3_202011{}_03-10/GIGACOW_identity*.csv".format(days+1+offset))[0])
+        data_identity = pd.read_csv(glob.glob("extractions/extraction_DelPro-5.3_202011{}_03-10/GIGACOW_identity*.csv".format(days+1+offset))[0])
 
     
     # Preprocess milking and cow traffic data
@@ -63,10 +63,10 @@ for offset in range(9):
     v3 = func.milk_to_tank_yesterday(data_milkings['Date'], data_milkings['Milk_yield'], data_milkings['Milk_destination'])
     v4 = func.num_day_lactation_0_100(data_feed['Days In Milk'])
     v5 = func.num_day_lactation_101_200(data_feed['Days In Milk'])
-    v6 = func.num_day_lactation_201_up(data_milkings['Animal_ID'], data_milkings['Milk_yield'], data3['Animal Number'], data3['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
-    v7 = func.avg_milking_volume_lact_0_100(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'], data3['Animal Number'], data3['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
-    v8 = func.avg_milking_volume_lact_101_200(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'], data3['Animal Number'], data3['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
-    v9 = func.avg_milking_volume_lact_201_up(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'], data3['Animal Number'], data3['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
+    v6 = func.num_day_lactation_201_up(data_milkings['Animal_ID'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
+    v7 = func.avg_milking_volume_lact_0_100(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
+    v8 = func.avg_milking_volume_lact_101_200(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
+    v9 = func.avg_milking_volume_lact_201_up(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
 
 
     # Append all key values to a DataFrame
@@ -75,14 +75,13 @@ for offset in range(9):
         'avg_milk_from_vms_1_and_2': w6, 'avg_nr_pass_smartgate': w7, 'projected_monthly_milk': w8,
         'avg_nr_of_kickOffs': v1,'avg_time_in_robot': v2,'Milk_to_tank_yesterday': v3,'cows_lactation_day_0-100': v4,
         'cows_lactation_day_101-200': v5,'cows_lactation_day_201-': v6,'avg_milking_volume_lact_0-100': v7,
-        'avg_milking_volume_lact_101-200': v8, 'avg_milking_volume_lact_201-': v9},
-        ignore_index = True)
+        'avg_milking_volume_lact_101-200': v8, 'avg_milking_volume_lact_201-': v9}, ignore_index = True)
 
 # Write key values to a csv file
 out_data.to_csv("keyvalues.csv", index=False)
 out_data.to_csv("keyvaluesOverView.csv", index=False, sep = ';')
 
-stat = func.cow_stat_kickoffs(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Milk_duration'], data_milkings['Action'], data_milkings['Milk_yield'], data_milkings['Nr_of_kickOffs'], data3['Animal Number'], data3['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
+stat = func.cow_stat_kickoffs(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Milk_duration'], data_milkings['Action'], data_milkings['Milk_yield'], data_milkings['Nr_of_kickOffs'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
 (stat[stat['Nr_of_kickOffs']>2]).to_csv("kickOffs.csv", index=False)
 
 stat_milking_once_below_thresh = func.milking_once_below_thresh(data_cow['Date'], data_cow['Animal_ID'], data_cow['Total_milk_yield'], data_cow['Nr_of_milkings'], 20)
