@@ -2,7 +2,7 @@ import pandas as pd
 import glob
 import functions as func
 
-days=7
+# Initialising dataframe contaning all keyvalues
 out_data = pd.DataFrame(columns = ['Date','avg_daily_milk_per_cow', 'avg_daily_nr_of_milkings_per_cow',
     'nr_of_milkings_cows_yesterday', 'avg_milk_from_vms_1', 'avg_milk_from_vms_2', 'avg_milk_from_vms_1_and_2',
     'avg_nr_pass_smartgate', 'projected_monthly_milk', 'avg_nr_of_kickOffs','avg_time_in_robot',
@@ -15,7 +15,8 @@ for offset in range(9):
     files = []
     files2 = []
     
-    # Read milking and cow traffic data for seven days
+    days=7
+    # Read milking and cow traffic data for some days
     for i in range(days):
         if (i+offset)<8:
             files.append(glob.glob("extractions/extraction_DelPro-5.3_2020110{}_03-10/GIGACOW_milkings*.csv".format(i+2+offset))[0])
