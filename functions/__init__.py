@@ -1,5 +1,4 @@
 from functions.averages import *
-from functions.kickOffs import *
 from functions.low_milk_production import *
 from functions.milk_per_cow import *
 from functions.milking_cows_yesterday import *
