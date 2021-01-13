@@ -2,32 +2,36 @@ import pandas as pd
 import glob
 import functions as func
 
-d=7
+days=7
 out_data = pd.DataFrame(columns = ['Date','avg_daily_milk_per_cow', 'avg_daily_nr_of_milkings_per_cow', 'nr_of_milkings_cows_yesterday', 'avg_milk_from_vms_1', 'avg_milk_from_vms_2', 'avg_milk_from_vms_1_and_2', 'avg_nr_pass_smartgate', 'projected_monthly_milk',
     'avg_nr_of_kickOffs','avg_time_in_robot','Milk_to_tank_yesterday','cows_lactation_day_0-100','cows_lactation_day_101-200','cows_lactation_day_201-','avg_milking_volume_lact_0-100','avg_milking_volume_lact_101-200', 'avg_milking_volume_lact_201-'])
+
 # Add offset in order to compute different values for different dates
-for of in range(9):
+for offset in range(2):
+    
     files = []
     files2 = []
     
     # Read milking and cow traffic data for seven days
-    for i in range(d):
-        if (i+of)<8:
-            files.append(glob.glob("extractions/extraction_DelPro-5.3_2020110{}_03-10/GIGACOW_milkings*.csv".format(i+2+of))[0])
-            files2.append(glob.glob("extractions/extraction_DelPro-5.3_2020110{}_03-10/Cow Traffic*.csv".format(i+2+of))[0])
+    for i in range(days):
+        if (i+offset)<8:
+            files.append(glob.glob("extractions/extraction_DelPro-5.3_2020110{}_03-10/GIGACOW_milkings*.csv".format(i+2+offset))[0])
+            files2.append(glob.glob("extractions/extraction_DelPro-5.3_2020110{}_03-10/Cow Traffic*.csv".format(i+2+offset))[0])
         else:
-            files.append(glob.glob("extractions/extraction_DelPro-5.3_202011{}_03-10/GIGACOW_milkings*.csv".format(i+2+of))[0])
-            files2.append(glob.glob("extractions/extraction_DelPro-5.3_202011{}_03-10/Cow Traffic*.csv".format(i+2+of))[0])
-    data = pd.concat((pd.read_csv(filename, sep = ';', decimal=',', header = 1) for filename in files), ignore_index = True)
+            files.append(glob.glob("extractions/extraction_DelPro-5.3_202011{}_03-10/GIGACOW_milkings*.csv".format(i+2+offset))[0])
+            files2.append(glob.glob("extractions/extraction_DelPro-5.3_202011{}_03-10/Cow Traffic*.csv".format(i+2+offset))[0])
     
-    # Read feed and identity data
-    if (of)<2:
-        data2 = pd.read_csv(glob.glob("extractions/extraction_DelPro-5.3_2020110{}_03-10/GIGACOW_feed*.csv".format(d+1+of))[0], encoding='latin-1')
-        data3 = pd.read_csv(glob.glob("extractions/extraction_DelPro-5.3_2020110{}_03-10/GIGACOW_identity*.csv".format(d+1+of))[0])
-    else:
-        data2 = pd.read_csv(glob.glob("extractions/extraction_DelPro-5.3_202011{}_03-10/GIGACOW_feed*.csv".format(d+1+of))[0], encoding='latin-1')
-        data3 = pd.read_csv(glob.glob("extractions/extraction_DelPro-5.3_202011{}_03-10/GIGACOW_identity*.csv".format(d+1+of))[0])
+    data = pd.concat((pd.read_csv(filename, sep = ';', decimal=',', header = 1) for filename in files), ignore_index = True)
     dataA2 = pd.concat((pd.read_csv(filename, sep = ',', encoding='latin-1') for filename in files2), ignore_index = True)
+
+    # Read feed and identity data
+    if (offset)<2:
+        data2 = pd.read_csv(glob.glob("extractions/extraction_DelPro-5.3_2020110{}_03-10/GIGACOW_feed*.csv".format(days+1+offset))[0], encoding='latin-1')
+        data3 = pd.read_csv(glob.glob("extractions/extraction_DelPro-5.3_2020110{}_03-10/GIGACOW_identity*.csv".format(days+1+offset))[0])
+    else:
+        data2 = pd.read_csv(glob.glob("extractions/extraction_DelPro-5.3_202011{}_03-10/GIGACOW_feed*.csv".format(days+1+offset))[0], encoding='latin-1')
+        data3 = pd.read_csv(glob.glob("extractions/extraction_DelPro-5.3_202011{}_03-10/GIGACOW_identity*.csv".format(days+1+offset))[0])
+
     
     # Preprocess milking and cow traffic data
     data = func.preprocess_milkings(data)
