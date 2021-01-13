@@ -77,3 +77,9 @@ out_data.to_csv("keyvaluesOverView.csv", index=False, sep = ';')
 
 stat = func.cow_stat_kickoffs(data['Date'], data['Animal_ID'], data['Milk_duration'], data['Action'], data['Milk_yield'], data['Nr_of_kickOffs'], data3['Animal Number'], data3['Official Reg. No. (ORN)'], data2['Official Reg. No. (ORN)'], data2['Days In Milk'])
 (stat[stat['Nr_of_kickOffs']>2]).to_csv("kickOffs.csv", index=False)
+
+stat_milking_once_below_thresh = func.milking_once_below_thresh(data_cow['Date'], data_cow['Animal_ID'], data_cow['Total_milk_yield'], data_cow['Nr_of_milkings'], 20)
+stat_milking_more_below_thresh = func.milking_more_below_thresh(data_cow['Date'], data_cow['Animal_ID'], data_cow['Total_milk_yield'], data_cow['Nr_of_milkings'], 25)
+
+stat_milking_once_below_thresh.to_csv("stat_milking_once_below_thresh.csv", index=False)
+stat_milking_more_below_thresh.to_csv("stat_milking_more_below_thresh.csv", index=False)
