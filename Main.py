@@ -44,38 +44,38 @@ for offset in range(9):
     data_cow = func.daily_milk_per_cow(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'])
     
     # Compute key values
-    v = data_milkings['Date'].iloc[-1] #Most recent date
-    w1 = func.avg_daily_milk_per_cow(data_cow['Total_milk_yield']) #"avg_daily_milk_per_cow"
-    w2 = func.avg_nr_of_milkings_per_cow(data_cow['Nr_of_milkings']) #"avg_daily_nr_of_milkings_per_cow"
-    w3 = func.nr_of_milking_cows_yesterday(data_cow['Date'], data_cow['Total_milk_yield']) #"nr_of_milkings_cows_yesterday"
+    v0 = data_milkings['Date'].iloc[-1] #Most recent date
+    v1 = func.avg_daily_milk_per_cow(data_cow['Total_milk_yield']) #"avg_daily_milk_per_cow"
+    v2 = func.avg_nr_of_milkings_per_cow(data_cow['Nr_of_milkings']) #"avg_daily_nr_of_milkings_per_cow"
+    v3 = func.nr_of_milking_cows_yesterday(data_cow['Date'], data_cow['Total_milk_yield']) #"nr_of_milkings_cows_yesterday"
 
     milk_from_robot = func.avg_milk_from_robots(data_milkings['Date'], data_milkings['Robot'], data_milkings['Action'], data_milkings['Milk_yield'])
     
-    w4 = milk_from_robot[1] #"avg_milk_from_vms_1"
-    w5 = milk_from_robot[3] #"avg_milk_from_vms_2"
-    w6 = milk_from_robot[-1] #"avg_milk_from_vms_1_and_2"
+    v4 = milk_from_robot[1] #"avg_milk_from_vms_1"
+    v5 = milk_from_robot[3] #"avg_milk_from_vms_2"
+    v6 = milk_from_robot[-1] #"avg_milk_from_vms_1_and_2"
 
-    w7 = func.avg_nr_pass_smartgate(data_traffic['Animal_ID'], data_traffic['Date'], data_traffic['Result']) #"avg_nr_pass_smartgate"
-    w8 = func.proj_monthly_milk(milk_from_robot) #projected_monthly_milk
+    v7 = func.avg_nr_pass_smartgate(data_traffic['Animal_ID'], data_traffic['Date'], data_traffic['Result']) #"avg_nr_pass_smartgate"
+    v8 = func.proj_monthly_milk(milk_from_robot) #projected_monthly_milk
 
-    v1 = func.avg_kickOffs(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Nr_of_kickOffs'])
-    v2 = func.avg_time_in_robot(data_milkings['Milk_duration'])
-    v3 = func.milk_to_tank_yesterday(data_milkings['Date'], data_milkings['Milk_yield'], data_milkings['Milk_destination'])
-    v4 = func.num_day_lactation_0_100(data_feed['Days In Milk'])
-    v5 = func.num_day_lactation_101_200(data_feed['Days In Milk'])
-    v6 = func.num_day_lactation_201_up(data_milkings['Animal_ID'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
-    v7 = func.avg_milking_volume_lact_0_100(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
-    v8 = func.avg_milking_volume_lact_101_200(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
-    v9 = func.avg_milking_volume_lact_201_up(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
+    v9 = func.avg_kickOffs(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Nr_of_kickOffs'])
+    v10 = func.avg_time_in_robot(data_milkings['Milk_duration'])
+    v11 = func.milk_to_tank_yesterday(data_milkings['Date'], data_milkings['Milk_yield'], data_milkings['Milk_destination'])
+    v12 = func.num_day_lactation_0_100(data_feed['Days In Milk'])
+    v13 = func.num_day_lactation_101_200(data_feed['Days In Milk'])
+    v14 = func.num_day_lactation_201_up(data_milkings['Animal_ID'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
+    v15 = func.avg_milking_volume_lact_0_100(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
+    v16 = func.avg_milking_volume_lact_101_200(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
+    v17 = func.avg_milking_volume_lact_201_up(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
 
 
     # Append all key values to a DataFrame
-    out_data = out_data.append({'Date': v, 'avg_daily_milk_per_cow': w1, 'avg_daily_nr_of_milkings_per_cow': w2, 
-        'nr_of_milkings_cows_yesterday': w3, 'avg_milk_from_vms_1': w4, 'avg_milk_from_vms_2': w5,
-        'avg_milk_from_vms_1_and_2': w6, 'avg_nr_pass_smartgate': w7, 'projected_monthly_milk': w8,
-        'avg_nr_of_kickOffs': v1,'avg_time_in_robot': v2,'Milk_to_tank_yesterday': v3,'cows_lactation_day_0-100': v4,
-        'cows_lactation_day_101-200': v5,'cows_lactation_day_201-': v6,'avg_milking_volume_lact_0-100': v7,
-        'avg_milking_volume_lact_101-200': v8, 'avg_milking_volume_lact_201-': v9}, ignore_index = True)
+    out_data = out_data.append({'Date': v0, 'avg_daily_milk_per_cow': v1, 'avg_daily_nr_of_milkings_per_cow': v2, 
+        'nr_of_milkings_cows_yesterday': v3, 'avg_milk_from_vms_1': v4, 'avg_milk_from_vms_2': v5,
+        'avg_milk_from_vms_1_and_2': v6, 'avg_nr_pass_smartgate': v7, 'projected_monthly_milk': v8,
+        'avg_nr_of_kickOffs': v9,'avg_time_in_robot': v10,'Milk_to_tank_yesterday': v11,'cows_lactation_day_0-100': v12,
+        'cows_lactation_day_101-200': v13,'cows_lactation_day_201-': v14,'avg_milking_volume_lact_0-100': v15,
+        'avg_milking_volume_lact_101-200': v16, 'avg_milking_volume_lact_201-': v17}, ignore_index = True)
 
 # Write key values to a csv file
 out_data.to_csv("keyvalues.csv", index=False)
