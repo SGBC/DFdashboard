@@ -2,7 +2,7 @@ import pandas as pd
 import glob
 import functions as func
 
-# Initialising dataframe contaning all keyvalues
+# Initialize a DataFrame containing all key values
 out_data = pd.DataFrame(columns = ['Date','avg_daily_milk_per_cow', 'avg_daily_nr_of_milkings_per_cow',
     'nr_of_milkings_cows_yesterday', 'avg_milk_from_vms_1', 'avg_milk_from_vms_2', 'avg_milk_from_vms_1_and_2',
     'avg_nr_pass_smartgate', 'projected_monthly_milk', 'avg_nr_of_kickOffs','avg_time_in_robot',
