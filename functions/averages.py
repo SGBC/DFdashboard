@@ -8,6 +8,12 @@ def avg_daily_milk_per_cow(total_milk_yield):
     return round(total_milk_yield.sum()/len(total_milk_yield), 2)
 
 
+# Input: pandas DataFrame for start_time, kickOff
+# Output: Average kickOffs based on the number of dates present in the data
+def avg_kickOffs(start_time, Animal_ID, kickOff):
+    return round(kickOff.sum()/(len(pd.unique(start_time)) + len(pd.unique(start_time))),2)
+
+
 # Input: pandas DataFrame for date, animal_id, action and milk_yield
 # Output: List containing robot name followed by the average received daily milk yield, for each robot
 #         as well as the latest date used for calculations and the sum of all yields
