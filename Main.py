@@ -64,11 +64,18 @@ for offset in range(9):
     
     v12 = func.num_day_lactation_0_100(data_feed['Days In Milk'])
     v13 = func.num_day_lactation_101_200(data_feed['Days In Milk'])
-    v14 = func.num_day_lactation_201_up(data_milkings['Animal_ID'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
+    v14 = func.num_day_lactation_201_up(data_milkings['Animal_ID'], data_milkings['Milk_yield'], data_identity['Animal Number'], 
+        data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
     
-    v15 = func.avg_milking_volume_lact_0_100(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
-    v16 = func.avg_milking_volume_lact_101_200(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
-    v17 = func.avg_milking_volume_lact_201_up(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
+    v15 = func.avg_milking_volume_lact_0_100(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], 
+        data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], 
+        data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
+    v16 = func.avg_milking_volume_lact_101_200(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], 
+        data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], 
+        data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
+    v17 = func.avg_milking_volume_lact_201_up(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Action'], 
+        data_milkings['Milk_yield'], data_identity['Animal Number'], data_identity['Official Reg. No. (ORN)'], 
+        data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
 
 
     # Append all key values to a DataFrame
