@@ -42,24 +42,3 @@ def preprocess_traffic(data):
     data['Result'] = (data['Result'] == 1).replace({True: 1, False: 0})
 
     return data
-
-
-# Input: pandas DataFrame containing all raw feed data
-# Output: pandas DataFrame containing formatted feed data
-def preprocess_feed(data):
-
-    # Rename columns
-    data = data.rename(columns = {'Official Reg. No. (ORN)':'Official Animal ID'})
-
-    # Get grain column names
-    col_names = list(data)
-    grain_col_names = []
-    for col in col_names:
-        if (col[0:4] == "Giva"):
-            grain_col_names.append(col)
-
-    # Get the grain columns and sum them for each cow
-    total_grain_dispensed = data[grain_col_names].transpose().sum()
-    data['Total Grain Dispensed'] = total_grain_dispensed
-
-    return data.loc[:, ['Official Animal ID', 'Lactation Number', 'Days In Milk', 'Last Calving Date', 'Concentrates Ration Yesterday', 'Total Grain Dispensed']]
