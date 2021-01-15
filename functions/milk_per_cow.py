@@ -33,7 +33,7 @@ def daily_milk_per_cow(date, animal_id, action, milk_yield):
 #        pandas DataFrame for animal_id and official ID
 #        pandas DataFrame for official ID and number of days in milk
 # Output: pandas DataFrame containing date, animal_id, daily_milk_yield, nr_of_milkings, nr_of_kickoffs and days_in_milk
-def cow_stat_kickoffs(date, animal_id, Milk_duration, action, milk_yield, Nr_of_kickOffs, animal_id2, off_id, off_id2, lact):
+def cow_stats(date, animal_id, Milk_duration, action, milk_yield, Nr_of_kickOffs, animal_id2, off_id, off_id2, lact):
     
     data = daily_milk_per_cow(date, animal_id, action, milk_yield)
 
@@ -65,10 +65,12 @@ def cow_stat_kickoffs(date, animal_id, Milk_duration, action, milk_yield, Nr_of_
             Nr_of_kickOffs = daily_milkings['Nr_of_kickOffs'].sum()
             return_data = return_data.append({'Date': date, 'Animal_ID': cow, 'avg_Milk_duration': avg_Milk_duration, 'Nr_of_kickOffs': Nr_of_kickOffs}, ignore_index = True)
 
+
     # Merges data to one dataframe
     data2 = data2.rename(columns={'Animal Number': 'Animal_ID'})
     return_data = pd.merge(return_data, data2)
     return_data = return_data.drop(columns=['Official Reg. No. (ORN)'])
     data = pd.merge(data, return_data)
+    data['Total_milk_yield'] = round(data['Total_milk_yield'],2)
 
     return data
