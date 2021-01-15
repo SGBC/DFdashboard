@@ -11,7 +11,7 @@ might not be found (Out of Index error).
 
 
 ## Front end
-* Our dashboard is in interface/Djangodashboard
+* Our dashboard is in interfaces/DjangoDashboard
 * cd into the folder, using 'python manage.py runserver' to view the dashboard. :)
 * The dashboard has been tested both on Microsoft Edge or Google Chrome browsers with screen size 1920*1080.
 * It is a demo dashboard. We tried to implement a more functional dashboard that you can check more details by mouse over the diagrams.
