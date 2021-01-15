@@ -1,5 +1,6 @@
 Missing key values:
 
+Profit today
 Bad economy cows
 MilkAlarm
 feedAlarm
