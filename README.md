@@ -1,5 +1,5 @@
 # DairyFarmersDashboard
-A Dashboard providing farmers with a Dashboard accessing data from Gigacow.
+A Dashboard providing farmers with a Dashboard accessing data from Gigacow. A list of features to be added are available in Missing.txt.
 
 
 ## Back end
