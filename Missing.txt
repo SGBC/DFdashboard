@@ -2,5 +2,5 @@ Missing key values:
 
 Bad economy cows
 MilkAlarm
-feedAlarm cows
+feedAlarm
 Search for cows to sort out, cow should milk over 30 liters on the 27 day in lactation
