@@ -89,12 +89,16 @@ for offset in range(9):
 
 # Write key values to a csv file
 out_data.to_csv("keyvalues.csv", index=False)
-out_data.to_csv("keyvaluesOverView.csv", index=False, sep = ';')
 
-stat = func.cow_stat_kickoffs(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Milk_duration'], 
+# Computing composite key values
+stat = func.cow_stats(data_milkings['Date'], data_milkings['Animal_ID'], data_milkings['Milk_duration'], 
     data_milkings['Action'], data_milkings['Milk_yield'], data_milkings['Nr_of_kickOffs'], data_identity['Animal Number'],
     data_identity['Official Reg. No. (ORN)'], data_feed['Official Reg. No. (ORN)'], data_feed['Days In Milk'])
-(stat[stat['Nr_of_kickOffs']>2]).to_csv("kickOffs.csv", index=False)
+
+func.many_kickOffs(stat, 2).to_csv("kickOffs.csv", index=False)
+func.long_milk_duration(stat, 10).to_csv("milkduration.csv", index=False)
+
+func.cow_dry_up(stat, 300).to_csv("cow_dry_up.csv", index=False)
 
 stat_milking_once_below_thresh = func.milking_once_below_thresh(data_cow['Date'], data_cow['Animal_ID'], data_cow['Total_milk_yield'], data_cow['Nr_of_milkings'], 20)
 stat_milking_more_below_thresh = func.milking_more_below_thresh(data_cow['Date'], data_cow['Animal_ID'], data_cow['Total_milk_yield'], data_cow['Nr_of_milkings'], 25)
