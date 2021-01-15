@@ -17,3 +17,4 @@ might not be found (Out of Index error). Main should be run in the same folder a
 * cd into the folder, using 'python manage.py runserver' to view the dashboard. :)
 * The dashboard has been tested both on Microsoft Edge or Google Chrome browsers with screen size 1920*1080.
 * It is a demo dashboard. We tried to implement a more functional dashboard that you can check more details by mouse over the diagrams.
+* To install echarts: cnpm install echarts --save
