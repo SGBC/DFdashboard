@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}   <!--load static files from both local and network-->
+
+<html>
+<head>
+    <title> Add activities</title>
+    <!--load js files-->
+    <script type="text/javascript" src="http://down.admin5.com/demo/code_pop/18/1299/lhgcore.js"></script>  
+    <script type="text/javascript" src="http://down.admin5.com/demo/code_pop/18/1299/lhgcalendar.js"></script> 
+</head>
+
+
+<body>
+<h1> Add activity </h1>
+    <div>  
+    <form method="post" action="{% url 'todolist_write' %}">
+        {% csrf_token %}
+        <p> Title :<input type="text" name="title">
+        <p> Date: <input type="date" name="day">
+        <p> Begin :<input type="time" name="c1">
+        <!--input type="text" name="c1" onclick="J.calendar.get({dir:'right'});"/-->      
+        <p> End :<input type="time" name="c2">
+        <!--input type="text" name="c2" onclick="J.calendar.get({dir:'right'});"/--> 
+        <p> Description:
+        <p><textarea  name="Description" row="30" cols="30">   </textarea>
+        <p>
+        <input type="submit" value="Save" style="font-size:15px; background-color:#00CC00; border-radius:15px;color:white; border:none">
+    </form>
+    <a href="{% url 'index'%}">
+         <button style="font-size:15px; background-color:#CCCCCC; border-radius:15px;color:white; border:none">Cancel</button>
+    </a>
+    </div>  
+</body>
+
+</html>

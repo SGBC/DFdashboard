@@ -1,0 +1,106 @@
+html, body{
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            #maincontainer{
+                height: 100%;
+                width: 100%;
+            }
+            #top{
+                height: 10%;
+                background-color: white;
+            }
+            .top_nav{
+                height: 5%;
+                width: 100%;
+                background-color: black;
+                color: white;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                font-size: 15px;
+                float: left;
+            }
+            #center{
+                height: 80%;
+                width: 100%;
+                background-color: white;
+            }
+            #left_bar{
+                margin-left:20px ;
+                height: 100%;
+                width: 17%;
+                float: left;
+                background-color: azure;
+                box-shadow: 2px 2px 5px darkgray;
+            }
+            #right_area{
+                margin-right: 20px;
+                height: 100%;
+                width: 80%;
+                float: right;
+                background-color: azure;
+                box-shadow: 2px 2px 5px darkgray;
+            }
+            #footer{
+                height: 100%;
+                width: 100%;
+                background-color: black;
+                margin-top: 10px;
+                text-align: center;
+                padding-top: 10px;
+                color: white;
+            }
+            .top_nav ul{
+            /* 清除ul标签的默认样式 */
+            width: auto;/*宽度也改为自动*/
+            list-style-type: none;
+            white-space:nowrap;
+            overflow: hidden;
+            margin-left: 5%;
+            /* margin-top: 0;          */
+            padding: 0;
+            }
+            .top_nav li {
+                float:left; /* 使li内容横向浮动，即横向排列  */
+                margin-right:2%;  /* 两个li之间的距离*/
+                position: relative;
+                overflow: hidden;
+            }
+            .top_nav li a{
+            display: block; /* 把链接显示为块元素可使整个链接区域可点击 */
+            color:white;
+            vertical-align: middle;
+            padding: 10px;
+            overflow: hidden;
+            text-decoration: none; /* 去除下划线 */
+            }
+            .nav_left{
+                height: 5%;
+                width: 45%;
+                float: left;
+                color: darkgray;
+                font-size: 20px;
+                padding-top: 20px;
+                padding-left: 60px;
+            }
+            .nav_right{
+                height: 5%;
+                width: 45%;
+                float: right;
+                color: darkgray;
+                font-size: 20px;
+                padding-top: 20px;
+                padding-right: 40px;
+                text-align: right;
+            }
+            .menu{
+                font-size: 20px;
+                color: darkgray;
+                text-decoration: none;
+                display: block;
+                letter-spacing: 1.5px;
+                text-align: left;
+                padding-left: 10%;
+                font-weight: bolder;
+            }
