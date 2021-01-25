@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',  # alert 
     'django.contrib.staticfiles',
-    'dashboard',
-    'django_crontab',  
+    'dashboard',  
     'django_echarts',   # plotting
 ]
 
