@@ -1,7 +1,5 @@
-from django.contrib.auth.models import User
 from django.shortcuts import render
-from django_echarts.views.backend import EChartsBackendView
-from django.contrib import messages
+#from django_echarts.views.backend import EChartsBackendView
 import numpy as np
 import csv
 import os
