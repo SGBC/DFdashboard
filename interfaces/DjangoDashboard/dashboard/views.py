@@ -40,7 +40,7 @@ def todolist_load():
         '''
     data = np.array(data)
     #print(len(data))
-    now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+    now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) # time format, %Y-%m-%d: YYYY-mm-dd, %H: hours in 24, %M: minute(0~59), %S: second 
     #print(now)
     List = []
     if (len(data) != 0):
