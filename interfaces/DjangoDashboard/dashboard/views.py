@@ -63,7 +63,12 @@ def index(request):
     #load data from csv
     keyvalues = "keyvalues.csv"
     result = np.array(Readfiles(Path + "\\" + keyvalues, 0))
-    List = todolist_load()
+    
+    if os.path.exists('todo_list.csv'):  # if exists, load file
+        List = todolist_load()
+    else: 
+        List = []
+      
     Date = list(result[:,0])
 
     avg_daily_milk_per_cow = list(result[:,1])
@@ -120,11 +125,10 @@ def index(request):
     #animal_ID = pd.DataFrame({'kickOffs': kickOffs_ID, 'milking_more': milking_more_ID})
     '''
 
-    #mereg into a tabel
-    #animal_ID = kickOffs_ID + milking_more_ID
+    #merge into a tabel
     animal_ID = {'kickOffs': kickOffs_ID, 'milking_more': milking_more_ID, 'milking_once': milking_once_ID}
     ID = list(animal_ID.values())
-    print(ID)
+    #print(ID)
     # return values to dashboard
     return render(request,"dashboard.html",
         {
@@ -145,7 +149,7 @@ def login(request):
     return render(request, "Login.html")
 
 
-# pop-up calendar
+# pop-up calendar, page for adding events
 def calendar(request):
     
     return render(request, "calendar.html")
@@ -157,8 +161,9 @@ begin = []
 Date = []
 end = []
 Description = []
+
 def todolist_write(request):
-    if request.method == 'POST':
+    if request.method == 'POST':   # get values from front end
         Title.append(request.POST.get('title'))
         Date.append(request.POST.get('day'))
         begin.append(request.POST.get('c1'))
